@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 8080;
 var port    = PORT;
 const PASS = process.env.DBPASS
 var mdbpass = PASS
+// set public directory location for loading images later
+var publicDir = require('path').join(__dirname,'/public');
+app.use(express.static(publicDir));
 
 // set up mongodb connection string
 const MongoClient = require('mongodb').MongoClient;
@@ -38,7 +41,7 @@ app.route('/response')
 
 // send user to home page
 app.get('/', function(req, res) {
-     res.sendFile(__dirname + '/download.html');
+     res.sendFile(__dirname + '/index.html');
 });
 
 

@@ -43,6 +43,8 @@
 
 	  req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
+
+		//alert("Thank you for your participation");
 	}
 
 	//Records metrics of B response
@@ -51,6 +53,8 @@
 
 		req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
+
+		//alert("Thank you for your participation");
 	}
 
 
@@ -61,7 +65,7 @@
 
 	<!--Basic Nav Bar-->
 	<ul>
-	 <li><a href="download.html">Home</a></li>
+	 <li><a href="/">Home</a></li>
 	 <li><a href="/admin">Dashboard</a></li>
 	</ul>
 
@@ -77,9 +81,9 @@
  </p><br>
 
 <!--Displays A/B testing inputs-->
-<input type = "image" src="/img/downloadButtonA.png" alt="Download A" width="160" height="80" onclick = "voteDownloadA();">
+<input type = "image" src="/img/downloadButtonA.png" alt="Download A" width="250" height="150" onclick = "voteDownloadA();">
 <br><br>
-<input type = "image" src="/img/downloadButtonB.png" alt="Download B" width="160" height="80" onclick = "voteDownloadB();">
+<input type = "image" src="/img/downloadButtonB.png" alt="Download B" width="250" height="150" onclick = "voteDownloadB();">
 
 </div>
 </body>
