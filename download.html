@@ -1,6 +1,13 @@
 <html>
 	<head>
 		<title>Get User Input</title>
+		<!--Basic CSS styling-->
+		<style>
+		body {background-color: LightGray;}
+		h2   {font-family: Arial, Helvetica, sans-serif;}
+		p    {font-family: Arial, Helvetica, sans-serif;}
+		li {display: inline;}
+</style>
 	</head>
 	<body onload="makeRequest();">
 
@@ -49,11 +56,31 @@
 
 </script>
 
-<h1>Select a Download Option</h1>
+<!--Center Text-->
+<div style="text-align:center;"> <div>
+
+	<!--Basic Nav Bar-->
+	<ul>
+	 <li><a href="download.html">Home</a></li>
+	 <li><a href="/admin">Dashboard</a></li>
+	</ul>
+
+<h2>Alpha Beta Testing</h2>
+
+<p>The purpose of this web system is to investigate which style of download button users are more trust worthy of. <br>
+	Many websites offering free downloads are spammed with adverts disguised as fake download buttons and sometimes <br>
+	malicious fake download buttons can be found that download viruses instead of the desired file.<br><br>
+	You are presented with two download buttons, click the download button you would be more inclined <br>
+	to click on if you were visiting a website with similarly styled buttons as the ones given below.<br><br>
+
+	The number of clicks each button receives will be stored in a database and can be viewed on <a href="/admin">this dashboard.</a>
+ </p><br>
 
 <!--Displays A/B testing inputs-->
-<input type = "image" src="img/downloadButtonA.png" alt="Download A" width="160" height="80" onclick = "voteDownloadA();" />
-<input type = "image" src="img/downloadButtonB.png" alt="Download B" width="160" height="80" onclick = "voteDownloadB();" />
+<input type = "image" src="/img/downloadButtonA.png" alt="Download A" width="160" height="80" onclick = "voteDownloadA();">
+<br><br>
+<input type = "image" src="/img/downloadButtonB.png" alt="Download B" width="160" height="80" onclick = "voteDownloadB();">
 
+</div>
 </body>
 </html>

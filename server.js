@@ -106,12 +106,11 @@ adminRouter.param('name', function(req, res, next, name) {   // do validation 
 adminRouter.get('/users/:name', function(req, res) {   res.send('hello ' + req.params.name + '!');  }); 
 
 // posts page (http://localhost:PORT/admin/posts) 
-adminRouter.get('/posts', function(req, res) {
-  res.send('I show all the posts!');  });
+//adminRouter.get('/posts', function(req, res) {
+//  res.send('I show all the posts!');  });
 
 // apply the routes to our application
 app.use('/admin', adminRouter);
-///////////////////////////////////////////////////////////////////
 
 // start the server
 app.listen(PORT);
