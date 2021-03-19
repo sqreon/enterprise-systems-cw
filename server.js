@@ -24,10 +24,7 @@ app.route('/login')
   // show the form (GET http://localhost:PORT/login)
     .get(function(req, res) {       var output = 'getting the login! ';
       var input1 = req.query['input1'];
-      var input2 = req.query['input2'];
-      if (typeof input1 != 'undefined' && typeof input2 != 'undefined') {
-        output+=('There was input: ' + input1 + ' and ' + input2);
-        res.send(output);
+      //var input2 = req.query['input2'];
      }
      console.log('Start the database stuff');
 
@@ -36,7 +33,7 @@ app.route('/login')
             //Write databse Insert/Update/Query code here..
             console.log('Start the database stuff');
             var dbo = db.db("mydb");
-            var myobj = { firstInput: input1, secondInput: input2 };
+            var myobj = { firstInput: input1};
             dbo.collection("users").insertOne(myobj, function(err, res) {
               if (err) throw err;
               console.log("1 user inserted");
