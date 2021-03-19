@@ -30,17 +30,17 @@
 
 }
 
-	function voteDownload1() {
-		input1 = 1;
+	function voteDownloadA() {
+		input_ab = 'a';
 
-	  req.open("GET", "/login?input1=" + input1, true);
+	  req.open("GET", "/login?input_ab=" + input_ab, true);
 		req.send();
 	}
 
-	function voteDownload2() {
-		input1 = 2;
+	function voteDownloadB() {
+		input_ab = 'b';
 
-		req.open("GET", "/login?input1=" + input1, true);
+		req.open("GET", "/login?input_ab=" + input_ab, true);
 		req.send();
 	}
 
@@ -51,10 +51,10 @@
 
 <h1>Response</h1>
 
-<p id="answer">Server response will go here</p>
 
-<input type = "button" value = "Download 1" onclick = "voteDownload1();" />
-<input type = "button" value = "Download 2" onclick = "voteDownload2();" />
+
+<input type = "button" value = "Download A" onclick = "voteDownloadA();" />
+<input type = "button" value = "Download B" onclick = "voteDownloadB();" />
 
 </body>
 </html>

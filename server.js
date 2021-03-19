@@ -23,7 +23,7 @@ const uri = "mongodb+srv://adminDBuser:password1235321@cluster0.jgigv.mongodb.ne
 app.route('/login')
   // show the form (GET http://localhost:PORT/login)
     .get(function(req, res) {       ;
-      var input1 = req.query['input1'];
+      var input_ab = req.query['input_ab'];
       //var input2 = req.query['input2'];
 
      console.log('Start the database stuff');
@@ -33,10 +33,10 @@ app.route('/login')
             //Write databse Insert/Update/Query code here..
             console.log('Start the database stuff');
             var dbo = db.db("mydb");
-            var myobj = { firstInput: input1};
-            dbo.collection("users").insertOne(myobj, function(err, res) {
+            var myobj = { AB_Response: input_ab};
+            dbo.collection("responses").insertOne(myobj, function(err, res) {
               if (err) throw err;
-              console.log("1 user inserted");
+              console.log("response logged");
               db.close();
             });
             console.log('End the database stuff');
