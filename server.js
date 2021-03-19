@@ -1,21 +1,23 @@
 
-// load the express package and create our app
+// load express package
 var express = require('express');
 var app     = express();
 const PORT = process.env.PORT || 8080;
-// set the port based on environment (more on environments later)
+// set the port based on environment
 var port    = PORT;
 const PASS = process.env.DBPASS
 var mdbpass = PASS
 
+// set up mongodb connection string
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://adminDBuser:password1235321@cluster0.jgigv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-app.route('/login')
+//function to handle recording user responses on AB test
+app.route('/response')
     .get(function(req, res) {       ;
       var input_ab = req.query['input_ab'];
 
-     console.log('Start the database stuff');
+     console.log('Writing to database');
 
      MongoClient.connect(uri, function (err, db) {
             if(err) throw err;
@@ -25,72 +27,70 @@ app.route('/login')
             var myobj = { AB_Response: input_ab};
             dbo.collection("responses").insertOne(myobj, function(err, res) {
               if (err) throw err;
-              console.log("response logged");
+              console.log("response recorded");
               db.close();
             });
-            console.log('End the database stuff');
+            console.log('Finished');
      });
 
    })
-  // process the form (POST http://localhost:PORT/login)
+  // process the form (POST http://localhost:PORT/response)
     .post(function(req, res) { console.log('processing');
-    res.send('processing the login form!');
+    res.send('processing AB test metrics gathering!');
   });
 
-// send our index.html file to the user for the home page
+
+// send user to home page
 app.get('/', function(req, res) {
      res.sendFile(__dirname + '/download.html');
 });
 
+
 ///////////////////////////////////////////////////////////////////
-// create routes for the admin section
-//get an instance of the router
 var adminRouter = express.Router(); 
-///////////////////////////////////////////////////////////////////
-// route middleware that will happen on every request
   adminRouter.use(function(req, res, next) {
     // log each request to the console
     console.log(req.method, req.url);
-    console.log("Its middleware!!!");
-    // continue doing what we were doing and go to the route
     next(); });
 ///////////////////////////////////////////////////////////////////
 
+
 // admin main page. the dashboard (http://localhost:PORT/admin) 
 adminRouter.get('/', function(req, res) {
-  res.send('Dashboard'); 
+  var output = " "
 
+//finds number of clicks button A received
   MongoClient.connect(uri, function (err, db) {
          if(err) throw err;
-         //Write databse Insert/Update/Query code here..
-         console.log('Start the database stuff');
+         console.log('open database');
          var dbo = db.db("mydb");
          var query  = { AB_Response: "a"};
          dbo.collection("responses").find(query).toArray(function(err, result) {
            if (err) throw err;
-           console.log("response logged");
            console.log("Number of clicks for button A: " + result.length);
-           //res.send("Number of clicks for button A: " + result.length);
+           output += ("Number of clicks for button A: " + result.length + ' | ');
            db.close();
          });
-         console.log('End the database stuff');
+         console.log('end read database');
   });
 
+//finds number of clicks button B received
   MongoClient.connect(uri, function (err, db) {
          if(err) throw err;
-         //Write databse Insert/Update/Query code here..
-         console.log('Start the database stuff');
+         console.log('open database');
          var dbo = db.db("mydb");
          var query  = { AB_Response: "b"};
          dbo.collection("responses").find(query).toArray(function(err, result) {
            if (err) throw err;
-           console.log("response logged");
            console.log("Number of clicks for button B: " + result.length);
-          //res.send("Number of clicks for button B: " + result.length);
+           output += ("Number of clicks for button B: " + result.length);
            db.close();
+           res.send(output);
          });
-         console.log('End the database stuff');
+         console.log('end read database');
+
   });
+
 });
 
 // users page (http://localhost:PORT/admin/users) 

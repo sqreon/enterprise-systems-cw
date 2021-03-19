@@ -34,7 +34,7 @@
 	function voteDownloadA() {
 		input_ab = 'a';
 
-	  req.open("GET", "/login?input_ab=" + input_ab, true);
+	  req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
 	}
 
@@ -42,19 +42,18 @@
 	function voteDownloadB() {
 		input_ab = 'b';
 
-		req.open("GET", "/login?input_ab=" + input_ab, true);
+		req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
 	}
 
-</script>
 
+</script>
 
 <h1>Select a Download Option</h1>
 
-//Displays A/B testing options
+<!--Displays A/B testing inputs-->
 <input type = "image" src="img/downloadButtonA.png" alt="Download A" width="160" height="80" onclick = "voteDownloadA();" />
 <input type = "image" src="img/downloadButtonB.png" alt="Download B" width="160" height="80" onclick = "voteDownloadB();" />
-
 
 </body>
 </html>
