@@ -1,3 +1,4 @@
+
 // load the express package and create our app
 var express = require('express');
 var app     = express();
@@ -8,7 +9,7 @@ const PASS = process.env.DBPASS
 var mdbpass = PASS
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://adminDBuser:<password>@cluster0.jgigv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://adminDBuser:password1235321@cluster0.jgigv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
 //const client = new MongoClient(uri, { useNewUrlParser: true });
