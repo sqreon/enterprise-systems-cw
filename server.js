@@ -1,4 +1,3 @@
-
 // load express package
 var express = require('express');
 var app     = express();
@@ -21,9 +20,6 @@ app.route('/response')
 
      MongoClient.connect(uri, function (err, db) {
             if(err) throw err;
-            //Write databse Insert/Update/Query code here..
-            console.log('Start the database stuff');
-            var dbo = db.db("mydb");
             var myobj = { AB_Response: input_ab};
             dbo.collection("responses").insertOne(myobj, function(err, res) {
               if (err) throw err;
@@ -94,7 +90,7 @@ adminRouter.get('/', function(req, res) {
 });
 
 // users page (http://localhost:PORT/admin/users) 
-adminRouter.get('/responses', function(req, res) {
+adminRouter.get('/users', function(req, res) {
   res.send('I show all the users!');  });
 
 // route middleware to validate :name 
@@ -102,15 +98,19 @@ adminRouter.param('name', function(req, res, next, name) {   // do validation 
   console.log('doing name validations on ' + name);   // once validation is done save the new item in the req   req.name = name;   // go to the next thing    next(); 
 });
 
+
 // route with parameters (http://localhost:PORT/admin/users/:name)
 adminRouter.get('/users/:name', function(req, res) {   res.send('hello ' + req.params.name + '!');  }); 
 
 // posts page (http://localhost:PORT/admin/posts) 
-//adminRouter.get('/posts', function(req, res) {
-//  res.send('I show all the posts!');  });
+adminRouter.get('/posts', function(req, res) {
+ res.send('I show all the posts!');  });
+
 
 // apply the routes to our application
 app.use('/admin', adminRouter);
+///////////////////////////////////////////////////////////////////
+
 
 // start the server
 app.listen(PORT);
