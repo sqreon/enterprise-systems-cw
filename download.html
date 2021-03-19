@@ -18,7 +18,7 @@
     	// Ajax not supported
 			return;
     }
-
+//////////////////////////////////////////////////////
 		req.onreadystatechange = function() {
 		var txt = "";
     if (this.readyState == 4 && this.status == 200) {
@@ -27,9 +27,10 @@
      document.getElementById("answer").innerHTML = response;
     }
 	};
-
+/////////////////////////////////////////////////////
 }
 
+	//Records metrics of A response
 	function voteDownloadA() {
 		input_ab = 'a';
 
@@ -37,6 +38,7 @@
 		req.send();
 	}
 
+	//Records metrics of B response
 	function voteDownloadB() {
 		input_ab = 'b';
 
@@ -49,8 +51,10 @@
 
 <h1>Select a Download Option</h1>
 
+//Displays A/B testing options
 <input type = "image" src="img/downloadButtonA.png" alt="Download A" width="160" height="80" onclick = "voteDownloadA();" />
 <input type = "image" src="img/downloadButtonB.png" alt="Download B" width="160" height="80" onclick = "voteDownloadB();" />
+
 
 </body>
 </html>

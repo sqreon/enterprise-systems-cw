@@ -12,7 +12,6 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://adminDBuser:password1235321@cluster0.jgigv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 app.route('/login')
-  // show the form (GET http://localhost:PORT/login)
     .get(function(req, res) {       ;
       var input_ab = req.query['input_ab'];
 
@@ -40,7 +39,7 @@ app.route('/login')
 
 // send our index.html file to the user for the home page
 app.get('/', function(req, res) {
-     res.sendFile(__dirname + '/userInput.html');
+     res.sendFile(__dirname + '/download.html');
 });
 
 ///////////////////////////////////////////////////////////////////
@@ -57,12 +56,45 @@ var adminRouter = express.Router(); 
     next(); });
 ///////////////////////////////////////////////////////////////////
 
-
 // admin main page. the dashboard (http://localhost:PORT/admin) 
 adminRouter.get('/', function(req, res) {
-  res.send('I am the dashboard!');  });
+  res.send('Dashboard'); 
+
+  MongoClient.connect(uri, function (err, db) {
+         if(err) throw err;
+         //Write databse Insert/Update/Query code here..
+         console.log('Start the database stuff');
+         var dbo = db.db("mydb");
+         var query  = { AB_Response: "a"};
+         dbo.collection("responses").find(query).toArray(function(err, result) {
+           if (err) throw err;
+           console.log("response logged");
+           console.log("Number of clicks for button A: " + result.length);
+           //res.send("Number of clicks for button A: " + result.length);
+           db.close();
+         });
+         console.log('End the database stuff');
+  });
+
+  MongoClient.connect(uri, function (err, db) {
+         if(err) throw err;
+         //Write databse Insert/Update/Query code here..
+         console.log('Start the database stuff');
+         var dbo = db.db("mydb");
+         var query  = { AB_Response: "b"};
+         dbo.collection("responses").find(query).toArray(function(err, result) {
+           if (err) throw err;
+           console.log("response logged");
+           console.log("Number of clicks for button B: " + result.length);
+          //res.send("Number of clicks for button B: " + result.length);
+           db.close();
+         });
+         console.log('End the database stuff');
+  });
+});
+
 // users page (http://localhost:PORT/admin/users) 
-adminRouter.get('/users', function(req, res) {
+adminRouter.get('/responses', function(req, res) {
   res.send('I show all the users!');  });
 
 // route middleware to validate :name 
