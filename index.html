@@ -44,7 +44,6 @@
 	  req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
 
-		//alert("Thank you for your participation");
 	}
 
 	//Records metrics of B response
@@ -54,7 +53,6 @@
 		req.open("GET", "/response?input_ab=" + input_ab, true);
 		req.send();
 
-		//alert("Thank you for your participation");
 	}
 
 
@@ -79,11 +77,10 @@
 
 	The number of clicks each button receives will be stored in a database and can be viewed on <a href="/admin">this dashboard.</a>
  </p><br>
-
 <!--Displays A/B testing inputs-->
-<input type = "image" src="/img/downloadButtonA.png" alt="Download A" width="250" height="150" onclick = "voteDownloadA();">
+<input type = "image" src="/img/downloadButtonA.png" alt="Download A" width="250" height="150" onclick = "voteDownloadA();alert('Thank you for your participation')">
 <br><br>
-<input type = "image" src="/img/downloadButtonB.png" alt="Download B" width="250" height="150" onclick = "voteDownloadB();">
+<input type = "image" src="/img/downloadButtonB.png" alt="Download B" width="250" height="150" onclick = "voteDownloadB();alert('Thank you for your participation')">
 
 </div>
 </body>

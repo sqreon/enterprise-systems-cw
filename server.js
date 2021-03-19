@@ -23,6 +23,7 @@ app.route('/response')
 
      MongoClient.connect(uri, function (err, db) {
             if(err) throw err;
+            var dbo = db.db("mydb");
             var myobj = { AB_Response: input_ab};
             dbo.collection("responses").insertOne(myobj, function(err, res) {
               if (err) throw err;
