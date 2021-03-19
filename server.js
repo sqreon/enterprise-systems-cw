@@ -22,10 +22,10 @@ const uri = "mongodb+srv://adminDBuser:password1235321@cluster0.jgigv.mongodb.ne
 
 app.route('/login')
   // show the form (GET http://localhost:PORT/login)
-    .get(function(req, res) {       var output = 'getting the login! ';
+    .get(function(req, res) {       ;
       var input1 = req.query['input1'];
       //var input2 = req.query['input2'];
-     }
+
      console.log('Start the database stuff');
 
      MongoClient.connect(uri, function (err, db) {
